@@ -4,7 +4,8 @@ module.exports = {
   add,
   findByUname,
   findById,
-  find
+  find,
+  findByColumn
 };
 
 // ******************************************************
@@ -23,7 +24,7 @@ function add(user) {
 // ******************************************************
 function findById(id) {
   return db("users")
-    .select("id","username")
+    .select("id","username","department")
     .where("id","=",id)
     .first();
 }
@@ -46,3 +47,14 @@ function findByUname(username) {
 function find() {
   return db("users").select("id", "username", "department");
 }
+
+
+// ******************************************************
+// findByColumn
+// ******************************************************
+function findByColumn(colName,coldata) {
+  return db("users")
+    .select("id", "username", "department")
+    .where(colName,'=',coldata);
+}
+
